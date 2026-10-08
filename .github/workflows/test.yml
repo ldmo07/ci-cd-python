@@ -19,5 +19,4 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt ruff pytest
       - run: ruff check .
-      # exit code 5 = no tests collected; tolerated until tests exist
-      - run: pytest || [ $? -eq 5 ]
+      - run: pytest
