@@ -9,6 +9,13 @@ BOOKS = [
 ]
 
 
+PRODUCTS = [
+    {"id": 1, "name": "Teclado mecanico", "price": 250000},
+    {"id": 2, "name": "Mouse inalambrico", "price": 90000},
+    {"id": 3, "name": "Monitor 24\"", "price": 680000},
+]
+
+
 @app.get("/")
 def index():
     return "python-example OK"
@@ -17,3 +24,16 @@ def index():
 @app.get("/books")
 def books():
     return jsonify(BOOKS)
+
+
+@app.get("/products")
+def products():
+    return jsonify(PRODUCTS)
+
+
+@app.get("/products/<int:product_id>")
+def product(product_id):
+    found = next((p for p in PRODUCTS if p["id"] == product_id), None)
+    if found is None:
+        return jsonify({"error": "product not found"}), 404
+    return jsonify(found)
