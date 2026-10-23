@@ -16,6 +16,13 @@ PRODUCTS = [
 ]
 
 
+CITIES = [
+    {"id": 1, "name": "Bogota", "country": "Colombia"},
+    {"id": 2, "name": "Medellin", "country": "Colombia"},
+    {"id": 3, "name": "Cali", "country": "Colombia"},
+]
+
+
 @app.get("/")
 def index():
     return "python-example OK"
@@ -24,6 +31,11 @@ def index():
 @app.get("/books")
 def books():
     return jsonify(BOOKS)
+
+
+@app.get("/cities")
+def cities():
+    return jsonify(CITIES)
 
 
 @app.get("/products")
