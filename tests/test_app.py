@@ -15,6 +15,14 @@ def test_books():
     assert all({"id", "title", "author"} <= b.keys() for b in books)
 
 
+def test_cities():
+    res = app.test_client().get("/cities")
+    assert res.status_code == 200
+    cities = res.get_json()
+    assert len(cities) == 3
+    assert all({"id", "name", "country"} <= c.keys() for c in cities)
+
+
 def test_products():
     res = app.test_client().get("/products")
     assert res.status_code == 200
